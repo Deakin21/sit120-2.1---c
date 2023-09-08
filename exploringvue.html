@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue 3 Concepts</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #df5555;
+            margin: 0;
+            padding: 0;
+        }
+
+        #app {
+            background-color: #f4c4c4;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 800px;
+        }
+
+        header {
+            background: linear-gradient(to right, #ff5733, #3399ff);
+            text-align: center;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #fff;
+            font-size: 48px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            color: #3399ff;
+            font-size: 28px;
+        }
+
+        button {
+            background: linear-gradient(to bottom, #ff3366, #ff0055);
+            color: #fff;
+            border: none;
+            padding: 15px 30px;
+            margin-top: 20px;
+            cursor: pointer;
+            border-radius: 25px;
+            font-size: 24px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #ff0055;
+        }
+
+        div > p {
+            margin: 15px 0;
+            font-size: 18px;
+            color: #555;
+        }
+
+        ul {
+            list-style-type: square;
+            padding: 0;
+        }
+
+        li {
+            margin: 8px 0;
+            font-size: 16px;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        label {
+            font-weight: bold;
+            color: #ff9933;
+            font-size: 20px;
+        }
+
+        input[type="checkbox"] {
+            margin-left: 10px;
+            vertical-align: middle;
+        }
+
+        p {
+            color: #777;
+            font-size: 16px;
+        }
+    </style>
+
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h1>Vue 3 Concepts</h1>
+
+        <!-- v-if and v-else -->
+        <div>
+            <h2>Conditional Rendering: v-if and v-else</h2>
+            <p v-if="showText">This paragraph is rendered with v-if when showText is true.</p>
+            <p v-else>This paragraph is rendered with v-else when showText is false.</p>
+            <button @click="toggleShowText">Toggle showText</button>
+        </div>
+
+        <!-- v-show -->
+        <div>
+            <h2>Conditional Rendering: v-show</h2>
+            <p v-show="showElement">This element is conditionally displayed using v-show.</p>
+            <button @click="toggleShowElement">Toggle showElement</button>
+        </div>
+
+        <!-- v-for -->
+        <div>
+            <h2>List Rendering: v-for</h2>
+            <ul>
+                <li v-for="(item, index) in items" :key="index">{{ item }}</li>
+            </ul>
+            <button @click="addItem">Auto add Item</button>
+        </div>
+
+        <!-- Multiline -->
+        <div>
+            <h2>Multiline Input with v-model</h2>
+            <textarea v-model="multilineText" rows="4" cols="50"></textarea>
+            <p style="white-space: pre-line;">{{ multilineText }}</p>
+        </div>
+
+        <!-- Checkbox -->
+        <div>
+            <h2>Checkbox Input with v-model</h2>
+            <label for="toggleCheckbox">Toggle Something:</label>
+            <input type="checkbox" id="toggleCheckbox" v-model="toggleValue">
+            <p>Checkbox Status: {{ toggleValue }}</p>
+        </div>
+    </div>
+
+    <!-- Include Vue.js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@3.0.11"></script>
+
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    showText: true,
+                    showElement: true,
+                    items: ['Item 1', 'Item 2', 'Item 3'],
+                    multilineText: '', 
+                    toggleValue: false 
+                };
+            },
+            methods: {
+                toggleShowText() {
+                    this.showText = !this.showText;
+                },
+                toggleShowElement() {
+                    this.showElement = !this.showElement;
+                },
+                addItem() {
+                    const newItem = `Item ${this.items.length + 1}`;
+                    this.items.push(newItem);
+                }
+            }
+        });
+
+        app.mount('#app');
+    </script>
+</body>
+</html>
